@@ -1,9 +1,10 @@
-(function(mds) {
-    "use strict";
+import * as d3 from 'd3';
+
+class mds {
     /// given a matrix of distances between some points, returns the
     /// point coordinates that best approximate the distances using
     /// classic multidimensional scaling
-    mds.classic = function(distances, dimensions) {
+    classic(distances, dimensions) {
         dimensions = dimensions || 2;
 
         // square distances
@@ -28,11 +29,11 @@
         return ret.U.map(function(row) {
             return numeric.mul(row, eigenValues).splice(0, dimensions);
         });
-    };
+    }
 
     /// draws a scatter plot of points, useful for displaying the output
     /// from mds.classic etc
-    mds.drawD3ScatterPlot = function(element, xPos, yPos, labels, params) {
+    drawD3ScatterPlot(element, xPos, yPos, labels, params) {
         params = params || {};
         var padding = params.padding || 32,
             w = params.w || Math.min(720, document.documentElement.clientWidth - padding),
@@ -95,6 +96,7 @@
             .text(function(d) { return d; })
             .attr("x", function(d, i) { return xScale(xPos[i]); })
             .attr("y", function(d, i) { return yScale(yPos[i]) - 2 *pointRadius; });
-    };
-}(window.mds = window.mds || {}));
+    }
+}
 
+export { mds };
