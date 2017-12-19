@@ -50,22 +50,20 @@
             yDomain.reverse();
         }
 
-        var xScale = d3.scale.linear().
+        var xScale = d3.scaleLinear().
                 domain(xDomain)
                 .range([padding, w - padding]),
 
-            yScale = d3.scale.linear().
+            yScale = d3.scaleLinear().
                 domain(yDomain)
                 .range([padding, h-padding]),
 
-            xAxis = d3.svg.axis()
+            xAxis = d3.axisBottom()
                 .scale(xScale)
-                .orient("bottom")
                 .ticks(params.xTicks || 7),
 
-            yAxis = d3.svg.axis()
+            yAxis = d3.axisLeft()
                 .scale(yScale)
-                .orient("left")
                 .ticks(params.yTicks || 7);
 
         var svg = element.append("svg")
