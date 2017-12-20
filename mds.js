@@ -95,7 +95,9 @@ class mds {
             .attr("text-anchor", "middle")
             .text(function(d) { return d; })
             .attr("x", function(d, i) { return xScale(xPos[i]); })
-            .attr("y", function(d, i) { return yScale(yPos[i]) - 2 *pointRadius; });
+            .attr("y", function(d, i) { return yScale(yPos[i]) - 2 *pointRadius; })
+            .on('mouseover', function(d) { d3.select(this).attr("fill", "red"); })
+            .on('mouseout', function(d) { d3.select(this).attr("fill", "black"); });
     }
 }
 
